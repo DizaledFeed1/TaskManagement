@@ -1,0 +1,25 @@
+package com.example.taskmanagement.controllers;
+
+import com.example.taskmanagement.data.entity.User;
+import lombok.Data;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Set;
+
+@Data
+public class RegistrationForm {
+    private String username;
+    private String password;
+//    private String confirm;
+//    private String fullname;
+//    private String email;
+//    private String phone;
+    private String role;
+
+    public User toUser(PasswordEncoder passwordEncoder) {
+        return new User(username, passwordEncoder.encode(password),Set.of(role));
+    }
+//    public boolean isPasswordMatching() {
+//        return password.equals(confirm);
+//    }
+}

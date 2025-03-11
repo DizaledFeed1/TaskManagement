@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: TaskManagement
+
+  logging:
+    level:
+      org.springframework.jdbc.core: DEBUG
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/TaskManagement
+    username: postgres
+    password: Porfik10
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    properties:
+      hibernate.transaction.jta.platform: org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
