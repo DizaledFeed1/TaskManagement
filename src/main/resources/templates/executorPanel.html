@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Панель администратора</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Панель пользователя</h1>
+  <div th:if="${param.error}" th:text="${param.error}" style="color: red;"></div>
+
+  <table id="taskTable" class="task-table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Заголовок</th>
+      <th>Описание</th>
+      <th>Статус</th>
+      <th>Приоритет</th>
+      <th>Автор</th>
+      <th>Исполнитель</th>
+      <th>Комментарии</th>
+      <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${tasks}">
+      <td th:text="${task.id}"></td>
+      <td th:text="${task.header}"></td>
+      <td th:text="${task.description}"></td>
+      <td>
+        <form action="/executorPanel/updateStatus" method="post">
+          <input type="hidden" name="taskId" th:value="${task.id}">
+          <select name="status" required>
+            <option value="WAITING" th:selected="${task.status.name() == 'WAITING'}">В ожидании</option>
+            <option value="IN_PROGRESS" th:selected="${task.status.name() == 'IN_PROGRESS'}">В процессе</option>
+            <option value="COMPLETED" th:selected="${task.status.name() == 'COMPLETED'}">Завершена</option>
+          </select>
+          <button type="submit">Сохранить</button>
+        </form>
+      </td>
+      <td th:text="${task.priority}"></td>
+      <td th:text="${task.author.getUsername()}"></td>
+      <td th:text="${task.executor.getUsername()}"></td>
+      <td>
+        <span th:each="comment : ${task.comment}" th:text="${comment.comment} + ' '"></span>
+      </td>
+      <td>
+        <form action="/executorPanel/addComment" method="post" class="add-comment-form">
+          <input type="hidden" name="commentTaskId" th:value="${task.id}">
+          <textarea name="commentText" placeholder="Введите комментарий" required></textarea>
+          <button type="submit">Добавить комментарий</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>

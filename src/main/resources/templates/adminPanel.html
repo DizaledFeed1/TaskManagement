@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Панель администратора</h1>
+    <button><a href="/tasks/create">Создать новую задачу</a></button>
+
+
+
+    <div th:if="${param.error}" th:text="${param.error}" style="color: red;"></div>
+    <form action="/adminPanel/delete" method="post" class="delete-form">
+        <label for="taskId">Введите ID задачи для удаления:</label>
+        <input type="number" id="taskId" name="taskId" required>
+        <button type="submit">Удалить задачу</button>
+    </form>
+
+    <table id="taskTable" class="task-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Заголовок</th>
+            <th>Описание</th>
+            <th>Статус</th>
+            <th>Приоритет</th>
+            <th>Автор</th>
+            <th>Исполнитель</th>
+            <th>Комментарии</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Пример строк с данными, замените на динамическую генерацию данных через Thymeleaf -->
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.id}"></td>
+            <td th:text="${task.header}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.status}"></td>
+            <td th:text="${task.priority}"></td>
+            <td th:text="${task.author.getUsername()}"></td>
+            <td th:text="${task.executor.getUsername()}"></td>
+            <td>
+                <a th:href="@{/adminPanel/editTask/{id}(id=${task.id})}">Редактировать</a>
+            </td>
+            <td>
+                <span th:each="comment : ${task.comment}" th:text="${comment.comment} + ' '"></span>
+            </td>
+            <td>
+                <form action="/adminPanel/addComment" method="post" class="add-comment-form">
+                    <input type="hidden" name="commentTaskId" th:value="*{task.id}">
+                    <textarea name="commentText" placeholder="Введите комментарий" required></textarea>
+                    <button type="submit">Добавить комментарий</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Создать новую задачу</title>
+
+</head>
+<body>
+
+<div class="container">
+  <h1>Создание новой задачи</h1>
+
+  <form th:action="@{/tasks/create}" method="POST" th:object="${createDto}">
+    <div class="form-group">
+      <label for="title">Заголовок:</label>
+      <input th:field="*{header}" type="text" id="title" name="title" placeholder="Введите заголовок задачи" required>
+    </div>
+
+      <div class="form-group">
+          <label for="title">Описание:</label>
+          <input th:field="*{description}" type="text" id="description" name="description" placeholder="Введите описание" required>
+      </div>
+
+    <div class="form-group">
+      <label for="status">Статус:</label>
+      <select th:field="*{status}" id="status" name="status" required>
+        <option value="WAITING">В ожидании</option>
+        <option value="IN_PROGRESS">В процессе</option>
+        <option value="COMPLETED">Завершено</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="priority">Приоритет:</label>
+      <select th:field="*{priority}" id="priority" name="priority" required>
+        <option value="HIGH">Высокий</option>
+        <option value="MEDIUM">Средний</option>
+        <option value="LOW">Низкий</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Коммент:</label>
+      <input th:field="*{comment}" type="text" id="comment" name="comment">
+    </div>
+
+    <div class="form-group">
+      <label for="assignee">Исполнитель:</label>
+      <select th:field="*{executor}" id="assignee" name="assignee" required>
+        <option value="" disabled selected>Выберите исполнителя</option>
+        <!-- Пример, если список исполнителей передаётся в модель -->
+        <option th:each="executor : ${executors}" th:value="${executor.id}" th:text="${executor.name}"></option>
+      </select>
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit">Создать задачу</button>
+    </div>
+  </form>
+
+</div>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 package com.example.taskmanagement.data.enums;
 
 public enum Status {
-    PENDING("В ожидании"),
+    WAITING("В ожидании"),
     IN_PROGRESS("В процессе"),
     COMPLETED("Завершено");
 

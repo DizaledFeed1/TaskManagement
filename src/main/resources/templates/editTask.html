@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Редактировать задачу</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Редактировать задачу</h1>
+  <form action="/adminPanel/saveTask" method="post" th:object="${task}">
+    <input type="hidden" name="taskId" th:value="${task.id}">
+
+    <label for="header">Заголовок:</label>
+    <input type="text" id="header" name="header" th:value="${task.header}" required>
+
+    <label for="description">Описание:</label>
+    <textarea name="description" id="description" required th:text="${task.description}"></textarea>
+
+    <label for="status">Статус:</label>
+    <select name="status" id="status" required>
+      <option value="WAITING" th:selected="${task.status.name() == 'WAITING'}">В ожидании</option>
+      <option value="IN_PROGRESS" th:selected="${task.status.name() == 'IN_PROGRESS'}">В процессе</option>
+      <option value="COMPLETED" th:selected="${task.status.name() == 'COMPLETED'}">Завершена</option>
+    </select>
+
+    <label for="priority">Приоритет:</label>
+    <select name="priority" id="priority" required>
+      <option value="HIGH" th:selected="${task.priority.name() == 'HIGH'}">Высокий</option>
+      <option value="MEDIUM" th:selected="${task.priority.name() == 'MEDIUM'}">Средний</option>
+      <option value="LOW" th:selected="${task.priority.name() == 'LOW'}">Низкий</option>
+    </select>
+
+    <label for="author">Автор:</label>
+    <input type="text" id="author" name="author" th:value="${task.author.username}" disabled>
+
+    <label for="executor">Исполнитель:</label>
+    <input type="text" id="executor" name="executor" th:value="${task.executor.username}" disabled>
+
+    <button type="submit">Сохранить изменения</button>
+  </form>
+</div>
+
+</body>
+</html>

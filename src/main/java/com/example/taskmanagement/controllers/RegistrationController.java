@@ -1,16 +1,13 @@
 package com.example.taskmanagement.controllers;
 
-import com.example.taskmanagement.data.entity.User;
 import com.example.taskmanagement.data.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.ui.Model;
+
 
 @Controller
 @RequestMapping("/register")
@@ -35,7 +32,6 @@ public class RegistrationController {
 //            return "register";
 //        }
         userRepo.save(form.toUser(passwordEncoder));
-//        System.out.println(userRepo.findByUsername("sa"));
         return "redirect:/login";
     }
 }

@@ -10,10 +10,6 @@ import java.util.Set;
 public class RegistrationForm {
     private String username;
     private String password;
-//    private String confirm;
-//    private String fullname;
-//    private String email;
-//    private String phone;
     private String role;
 
     public User toUser(PasswordEncoder passwordEncoder) {

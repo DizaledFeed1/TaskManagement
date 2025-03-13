@@ -36,17 +36,18 @@ public class SecurityConfig {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter();
 
         return http
-                .csrf(csrf -> csrf.disable()) // Отключение CSRF защиты, если не используется
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/register").permitAll() // Публичные эндпоинты
-                                .anyRequest().authenticated() // Все остальные требуют аутентификацию
+                                .requestMatchers("/register").permitAll()
+                                .requestMatchers("/login").permitAll()
+                                .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
-                                .successHandler(customSuccessHandler) // Кастомный обработчик успешной аутентификации
+                                .successHandler(customSuccessHandler)
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // Добавление фильтра JWT перед стандартным фильтром аутентификации
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 }

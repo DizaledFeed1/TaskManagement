@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity
 public class Task {
@@ -28,13 +31,14 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
-    private String comment; //Может быть пустым
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "task")
+    private List<Comment> comment = new ArrayList<>(); //Может быть пустым
 
     @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "executor_id")
     private User executor;
 }
