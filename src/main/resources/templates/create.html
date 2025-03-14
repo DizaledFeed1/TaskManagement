@@ -49,7 +49,6 @@
       <label for="assignee">Исполнитель:</label>
       <select th:field="*{executor}" id="assignee" name="assignee" required>
         <option value="" disabled selected>Выберите исполнителя</option>
-        <!-- Пример, если список исполнителей передаётся в модель -->
         <option th:each="executor : ${executors}" th:value="${executor.id}" th:text="${executor.name}"></option>
       </select>
     </div>

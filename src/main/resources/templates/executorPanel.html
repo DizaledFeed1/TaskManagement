@@ -59,6 +59,26 @@
     </tbody>
   </table>
 
+  <div class="pagination">
+    <form action="/executorPanel" method="get" class="pagination-form">
+      <input type="hidden" name="page" th:value="${currentPage - 1}" />
+      <input type="hidden" name="size" th:value="${size}" />
+      <input type="hidden" name="executorId" th:value="${executorId != null ? executorId : ''}" />
+      <input type="hidden" name="adminId" th:value="${adminId != null ? adminId : ''}" />
+      <button type="submit" th:if="${currentPage > 0}">Предыдущая</button>
+    </form>
+
+    <span>Страница <span th:text="${currentPage + 1}"></span> из <span th:text="${totalPages}"></span></span>
+
+    <form action="/executorPanel" method="get" class="pagination-form">
+      <input type="hidden" name="page" th:value="${currentPage + 1}" />
+      <input type="hidden" name="size" th:value="${size}" />
+      <input type="hidden" name="executorId" th:value="${executorId != null ? executorId : ''}" />
+      <input type="hidden" name="adminId" th:value="${adminId != null ? adminId : ''}" />
+      <button type="submit" th:if="${currentPage < totalPages - 1}">Следующая</button>
+    </form>
+  </div>
+
 </div>
 </body>
 </html>
