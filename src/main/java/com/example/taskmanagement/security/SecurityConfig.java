@@ -41,6 +41,8 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/register").permitAll()
                                 .requestMatchers("/login").permitAll()
+                                .requestMatchers("/swagger-ui/**").permitAll()
+                                .requestMatchers("/v3/api-docs/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
