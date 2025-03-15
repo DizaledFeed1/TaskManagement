@@ -90,7 +90,7 @@ public class AdminPanelController {
         return "redirect:/adminPanel";
     }
 
-    @Operation(summary = "Удаление задачи", description = "Удаляет задачу по ID")
+    @Operation(summary = "Удаление задачи", description = "Удаляет задачу по ID (используется POST вместо DELETE)")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Задача успешно удалена"),
             @ApiResponse(responseCode = "404", description = "Задача с таким ID не найдена")

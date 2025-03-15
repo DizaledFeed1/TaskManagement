@@ -1,6 +1,7 @@
 package com.example.taskmanagement.controllers;
 
 import com.example.taskmanagement.data.repository.UserRepo;
+import com.example.taskmanagement.dto.RegistrationForm;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

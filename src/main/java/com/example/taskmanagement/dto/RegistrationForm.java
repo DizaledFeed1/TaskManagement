@@ -1,4 +1,4 @@
-package com.example.taskmanagement.controllers;
+package com.example.taskmanagement.dto;
 
 import com.example.taskmanagement.data.entity.User;
 import lombok.Data;
