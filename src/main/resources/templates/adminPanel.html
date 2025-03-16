@@ -14,13 +14,13 @@
 
     <div th:if="${param.error}" th:text="${param.error}" style="color: red;"></div>
 
-    <form action="/adminPanel/delete" method="post" class="delete-form">
+    <form action="/api/adminPanel/delete" method="post" class="delete-form">
         <label for="taskId">Введите ID задачи для удаления:</label>
         <input type="number" id="taskId" name="taskId" required>
         <button type="submit">Удалить задачу</button>
     </form>
 
-    <form action="/adminPanel/filterExecutor" method="post" class="filter-form">
+    <form action="adminPanel/filterExecutor" method="post" class="filter-form">
         <label for="executorId">Выберите пользователя для фильтрации:</label>
         <select  id="executorId" name="executorId" required>
             <option value="">-- Выберите пользователя --</option>
@@ -71,7 +71,7 @@
                 <span th:each="comment : ${task.comment}" th:text="${comment.comment} + ' '"></span>
             </td>
             <td>
-                <form action="/adminPanel/addComment" method="post" class="add-comment-form">
+                <form action="/api/adminPanel/addComment" method="post" class="add-comment-form">
                     <input type="hidden" name="commentTaskId" th:value="*{task.id}">
                     <textarea name="commentText" placeholder="Введите комментарий" required></textarea>
                     <button type="submit">Добавить комментарий</button>

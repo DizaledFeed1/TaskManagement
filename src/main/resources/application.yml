@@ -15,7 +15,7 @@ spring:
       org.springframework.jdbc.core: DEBUG
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/TaskManagement
+    url: jdbc:postgresql://db:5432/TaskManagement
     username: postgres
     password: Porfik10
     driver-class-name: org.postgresql.Driver

@@ -11,7 +11,7 @@
 <div class="container">
   <h1>Создание новой задачи</h1>
 
-  <form th:action="@{/tasks/create}" method="POST" th:object="${createDto}">
+  <form th:action="@{/tasks/api/create}" method="POST" th:object="${createDto}">
     <div class="form-group">
       <label for="title">Заголовок:</label>
       <input th:field="*{header}" type="text" id="title" name="title" placeholder="Введите заголовок задачи" required>

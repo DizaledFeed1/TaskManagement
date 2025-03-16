@@ -32,7 +32,7 @@
       <td th:text="${task.header}"></td>
       <td th:text="${task.description}"></td>
       <td>
-        <form action="/executorPanel/updateStatus" method="post">
+        <form action="/api/executorPanel/updateStatus" method="post">
           <input type="hidden" name="taskId" th:value="${task.id}">
           <select name="status" required>
             <option value="WAITING" th:selected="${task.status.name() == 'WAITING'}">В ожидании</option>
@@ -49,7 +49,7 @@
         <span th:each="comment : ${task.comment}" th:text="${comment.comment} + ' '"></span>
       </td>
       <td>
-        <form action="/executorPanel/addComment" method="post" class="add-comment-form">
+        <form action="/api/executorPanel/addComment" method="post" class="add-comment-form">
           <input type="hidden" name="commentTaskId" th:value="${task.id}">
           <textarea name="commentText" placeholder="Введите комментарий" required></textarea>
           <button type="submit">Добавить комментарий</button>

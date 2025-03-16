@@ -11,17 +11,16 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/tasks")
 @Tag(name = "Create", description = "API для создания задачи")
 public class CreateController {
-    @Autowired
-    private TaskService taskService;
     @Autowired
     private UserService userService;
 
@@ -45,18 +44,5 @@ public class CreateController {
     @ModelAttribute("createDto")
     public CreateDto createDto() {
         return new CreateDto();
-    }
-
-
-    @Operation(summary = "Создать новую задачу", description = "Обрабатывает данные формы для создания новой задачи.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Задача успешно создана."),
-            @ApiResponse(responseCode = "400", description = "Некорректные данные для создания задачи."),
-            @ApiResponse(responseCode = "500", description = "Ошибка при создании задачи.")
-    })
-    @PostMapping("/create")
-    public String create(@ModelAttribute CreateDto task) {
-        taskService.createTask(task);
-        return "create";
     }
 }
