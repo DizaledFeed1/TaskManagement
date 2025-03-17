@@ -12,3 +12,6 @@ docker pull dizaledfeed/taskmanagement-app:latest
 Руководство пользования 
 переходим на http://localhost:8080/register
 и регистрируем пользователей (ROLE_EXECUTOR - для исполнителя, ROLE_ADMIN - для админа).
+Переходим на http://localhost:8080/login и авторизуемся 
+
+Swagger IU нанодиться: http://localhost:8080/swagger-ui/index.html
