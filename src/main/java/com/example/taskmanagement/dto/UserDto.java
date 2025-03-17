@@ -12,7 +12,6 @@ public class UserDto {
     @Schema(description = "Email пользователя", example = "user@example.com")
     private String name;
 
-    // Правильный конструктор
     public UserDto(Long id, String name) {
         this.id = id;
         this.name = name;

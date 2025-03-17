@@ -15,7 +15,4 @@ public class RegistrationForm {
     public User toUser(PasswordEncoder passwordEncoder) {
         return new User(username, passwordEncoder.encode(password),Set.of(role));
     }
-//    public boolean isPasswordMatching() {
-//        return password.equals(confirm);
-//    }
 }
